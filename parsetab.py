@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'statementleftPLUSMINUSleftTIMESDIVIDEnonassocUMINUSleftEXPONENTrightSQRTleftMODDIVIDE EQUALS EXPONENT IDENTIFIER LPAREN MINUS MOD NUMBER PLUS RPAREN SQRT TIMES\n    statement : assignment\n              | expression\n    assignment : IDENTIFIER EQUALS expressionexpression : expression PLUS expression\n                  | expression MINUS expression\n                  | expression TIMES expression\n                  | expression DIVIDE expressionexpression : MINUS expression %prec UMINUSexpression : LPAREN expression RPARENexpression : NUMBERexpression : expression EXPONENT expressionexpression : expression MOD expressionexpression : SQRT LPAREN expression RPARENexpression : IDENTIFIER'
+_lr_signature = 'leftPLUSMINUSleftTIMESDIVIDEleftEXPONENTrightUMINUSDIVIDE EQUALS EXPONENT IDENTIFIER LPAREN MINUS MOD NUMBER PLUS RPAREN TIMESstatement : expressionstatement : IDENTIFIER EQUALS expressionexpression : expression PLUS expression\n                  | expression MINUS expression\n                  | expression TIMES expression\n                  | expression DIVIDE expression\n                  | expression MOD expression\n                  | expression EXPONENT expressionexpression : MINUS expression %prec UMINUSexpression : LPAREN expression RPARENexpression : NUMBERexpression : IDENTIFIER'
     
-_lr_action_items = {'IDENTIFIER':([0,5,6,9,10,11,12,13,14,15,19,],[4,17,17,17,17,17,17,17,17,17,17,]),'MINUS':([0,3,4,5,6,7,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,],[5,10,-14,5,5,-10,5,5,5,5,5,5,5,-8,-14,10,5,-4,-5,-6,-7,-11,-12,10,-9,10,-13,]),'LPAREN':([0,5,6,8,9,10,11,12,13,14,15,19,],[6,6,6,19,6,6,6,6,6,6,6,6,]),'NUMBER':([0,5,6,9,10,11,12,13,14,15,19,],[7,7,7,7,7,7,7,7,7,7,7,]),'SQRT':([0,5,6,9,10,11,12,13,14,15,19,],[8,8,8,8,8,8,8,8,8,8,8,]),'$end':([1,2,3,4,7,16,17,20,21,22,23,24,25,26,27,29,],[0,-1,-2,-14,-10,-8,-14,-4,-5,-6,-7,-11,-12,-3,-9,-13,]),'PLUS':([3,4,7,16,17,18,20,21,22,23,24,25,26,27,28,29,],[9,-14,-10,-8,-14,9,-4,-5,-6,-7,-11,-12,9,-9,9,-13,]),'TIMES':([3,4,7,16,17,18,20,21,22,23,24,25,26,27,28,29,],[11,-14,-10,-8,-14,11,11,11,-6,-7,-11,-12,11,-9,11,-13,]),'DIVIDE':([3,4,7,16,17,18,20,21,22,23,24,25,26,27,28,29,],[12,-14,-10,-8,-14,12,12,12,-6,-7,-11,-12,12,-9,12,-13,]),'EXPONENT':([3,4,7,16,17,18,20,21,22,23,24,25,26,27,28,29,],[13,-14,-10,13,-14,13,13,13,13,13,-11,-12,13,-9,13,-13,]),'MOD':([3,4,7,16,17,18,20,21,22,23,24,25,26,27,28,29,],[14,-14,-10,14,-14,14,14,14,14,14,14,-12,14,-9,14,-13,]),'EQUALS':([4,],[15,]),'RPAREN':([7,16,17,18,20,21,22,23,24,25,27,28,29,],[-10,-8,-14,27,-4,-5,-6,-7,-11,-12,-9,29,-13,]),}
+_lr_action_items = {'IDENTIFIER':([0,4,5,7,8,9,10,11,12,13,],[3,15,15,15,15,15,15,15,15,15,]),'MINUS':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,],[4,8,-12,4,4,-11,4,4,4,4,4,4,4,-9,-12,8,-3,-4,-5,-6,8,-8,8,-10,]),'LPAREN':([0,4,5,7,8,9,10,11,12,13,],[5,5,5,5,5,5,5,5,5,5,]),'NUMBER':([0,4,5,7,8,9,10,11,12,13,],[6,6,6,6,6,6,6,6,6,6,]),'$end':([1,2,3,6,14,15,17,18,19,20,21,22,23,24,],[0,-1,-12,-11,-9,-12,-3,-4,-5,-6,-7,-8,-2,-10,]),'PLUS':([2,3,6,14,15,16,17,18,19,20,21,22,23,24,],[7,-12,-11,-9,-12,7,-3,-4,-5,-6,7,-8,7,-10,]),'TIMES':([2,3,6,14,15,16,17,18,19,20,21,22,23,24,],[9,-12,-11,-9,-12,9,9,9,-5,-6,9,-8,9,-10,]),'DIVIDE':([2,3,6,14,15,16,17,18,19,20,21,22,23,24,],[10,-12,-11,-9,-12,10,10,10,-5,-6,10,-8,10,-10,]),'MOD':([2,3,6,14,15,16,17,18,19,20,21,22,23,24,],[11,-12,-11,-9,-12,11,-3,-4,-5,-6,11,-8,11,-10,]),'EXPONENT':([2,3,6,14,15,16,17,18,19,20,21,22,23,24,],[12,-12,-11,-9,-12,12,12,12,12,12,12,-8,12,-10,]),'EQUALS':([3,],[13,]),'RPAREN':([6,14,15,16,17,18,19,20,21,22,24,],[-11,-9,-12,24,-3,-4,-5,-6,-7,-8,-10,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'statement':([0,],[1,]),'assignment':([0,],[2,]),'expression':([0,5,6,9,10,11,12,13,14,15,19,],[3,16,18,20,21,22,23,24,25,26,28,]),}
+_lr_goto_items = {'statement':([0,],[1,]),'expression':([0,4,5,7,8,9,10,11,12,13,],[2,14,16,17,18,19,20,21,22,23,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,18 +27,16 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> statement","S'",1,None,None,None),
-  ('statement -> assignment','statement',1,'p_statement','yacc_parser.py',31),
-  ('statement -> expression','statement',1,'p_statement','yacc_parser.py',32),
-  ('assignment -> IDENTIFIER EQUALS expression','assignment',3,'p_assignment','yacc_parser.py',38),
-  ('expression -> expression PLUS expression','expression',3,'p_expression_binop','yacc_parser.py',45),
-  ('expression -> expression MINUS expression','expression',3,'p_expression_binop','yacc_parser.py',46),
-  ('expression -> expression TIMES expression','expression',3,'p_expression_binop','yacc_parser.py',47),
-  ('expression -> expression DIVIDE expression','expression',3,'p_expression_binop','yacc_parser.py',48),
-  ('expression -> MINUS expression','expression',2,'p_expression_uminus','yacc_parser.py',60),
-  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','yacc_parser.py',65),
-  ('expression -> NUMBER','expression',1,'p_expression_number','yacc_parser.py',70),
-  ('expression -> expression EXPONENT expression','expression',3,'p_expression_exponent','yacc_parser.py',75),
-  ('expression -> expression MOD expression','expression',3,'p_expression_mod','yacc_parser.py',80),
-  ('expression -> SQRT LPAREN expression RPAREN','expression',4,'p_expression_sqrt','yacc_parser.py',85),
-  ('expression -> IDENTIFIER','expression',1,'p_expression_var','yacc_parser.py',96),
+  ('statement -> expression','statement',1,'p_statement_expr','yacc_parser.py',34),
+  ('statement -> IDENTIFIER EQUALS expression','statement',3,'p_statement_assign','yacc_parser.py',38),
+  ('expression -> expression PLUS expression','expression',3,'p_expression_binop','yacc_parser.py',42),
+  ('expression -> expression MINUS expression','expression',3,'p_expression_binop','yacc_parser.py',43),
+  ('expression -> expression TIMES expression','expression',3,'p_expression_binop','yacc_parser.py',44),
+  ('expression -> expression DIVIDE expression','expression',3,'p_expression_binop','yacc_parser.py',45),
+  ('expression -> expression MOD expression','expression',3,'p_expression_binop','yacc_parser.py',46),
+  ('expression -> expression EXPONENT expression','expression',3,'p_expression_binop','yacc_parser.py',47),
+  ('expression -> MINUS expression','expression',2,'p_expression_uminus','yacc_parser.py',51),
+  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','yacc_parser.py',55),
+  ('expression -> NUMBER','expression',1,'p_expression_number','yacc_parser.py',59),
+  ('expression -> IDENTIFIER','expression',1,'p_expression_var','yacc_parser.py',63),
 ]
