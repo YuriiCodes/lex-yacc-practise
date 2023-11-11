@@ -2,538 +2,656 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Grammar
 
-Rule 0     S' -> expression
-Rule 1     expression -> expression PLUS expression
-Rule 2     expression -> expression MINUS expression
-Rule 3     expression -> expression TIMES expression
-Rule 4     expression -> expression DIVIDE expression
-Rule 5     expression -> MINUS expression
-Rule 6     expression -> LPAREN expression RPAREN
-Rule 7     expression -> NUMBER
-Rule 8     expression -> expression EXPONENT expression
-Rule 9     expression -> expression MOD expression
-Rule 10    expression -> SQRT LPAREN expression RPAREN
+Rule 0     S' -> statement
+Rule 1     statement -> assignment
+Rule 2     statement -> expression
+Rule 3     assignment -> IDENTIFIER EQUALS expression
+Rule 4     expression -> expression PLUS expression
+Rule 5     expression -> expression MINUS expression
+Rule 6     expression -> expression TIMES expression
+Rule 7     expression -> expression DIVIDE expression
+Rule 8     expression -> MINUS expression
+Rule 9     expression -> LPAREN expression RPAREN
+Rule 10    expression -> NUMBER
+Rule 11    expression -> expression EXPONENT expression
+Rule 12    expression -> expression MOD expression
+Rule 13    expression -> SQRT LPAREN expression RPAREN
+Rule 14    expression -> IDENTIFIER
 
 Terminals, with rules where they appear
 
-DIVIDE               : 4
-EXPONENT             : 8
-LPAREN               : 6 10
-MINUS                : 2 5
-MOD                  : 9
-NUMBER               : 7
-PLUS                 : 1
-RPAREN               : 6 10
-SQRT                 : 10
-TIMES                : 3
+DIVIDE               : 7
+EQUALS               : 3
+EXPONENT             : 11
+IDENTIFIER           : 3 14
+LPAREN               : 9 13
+MINUS                : 5 8
+MOD                  : 12
+NUMBER               : 10
+PLUS                 : 4
+RPAREN               : 9 13
+SQRT                 : 13
+TIMES                : 6
 error                : 
 
 Nonterminals, with rules where they appear
 
-expression           : 1 1 2 2 3 3 4 4 5 6 8 8 9 9 10 0
+assignment           : 1
+expression           : 2 3 4 4 5 5 6 6 7 7 8 9 11 11 12 12 13
+statement            : 0
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . expression
-    (1) expression -> . expression PLUS expression
-    (2) expression -> . expression MINUS expression
-    (3) expression -> . expression TIMES expression
-    (4) expression -> . expression DIVIDE expression
-    (5) expression -> . MINUS expression
-    (6) expression -> . LPAREN expression RPAREN
-    (7) expression -> . NUMBER
-    (8) expression -> . expression EXPONENT expression
-    (9) expression -> . expression MOD expression
-    (10) expression -> . SQRT LPAREN expression RPAREN
+    (0) S' -> . statement
+    (1) statement -> . assignment
+    (2) statement -> . expression
+    (3) assignment -> . IDENTIFIER EQUALS expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . MINUS expression
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . NUMBER
+    (11) expression -> . expression EXPONENT expression
+    (12) expression -> . expression MOD expression
+    (13) expression -> . SQRT LPAREN expression RPAREN
+    (14) expression -> . IDENTIFIER
 
-    MINUS           shift and go to state 2
-    LPAREN          shift and go to state 3
-    NUMBER          shift and go to state 4
-    SQRT            shift and go to state 5
+    IDENTIFIER      shift and go to state 4
+    MINUS           shift and go to state 5
+    LPAREN          shift and go to state 6
+    NUMBER          shift and go to state 7
+    SQRT            shift and go to state 8
 
-    expression                     shift and go to state 1
+    statement                      shift and go to state 1
+    assignment                     shift and go to state 2
+    expression                     shift and go to state 3
 
 state 1
 
-    (0) S' -> expression .
-    (1) expression -> expression . PLUS expression
-    (2) expression -> expression . MINUS expression
-    (3) expression -> expression . TIMES expression
-    (4) expression -> expression . DIVIDE expression
-    (8) expression -> expression . EXPONENT expression
-    (9) expression -> expression . MOD expression
+    (0) S' -> statement .
 
-    PLUS            shift and go to state 6
-    MINUS           shift and go to state 7
-    TIMES           shift and go to state 8
-    DIVIDE          shift and go to state 9
-    EXPONENT        shift and go to state 10
-    MOD             shift and go to state 11
 
 
 state 2
 
-    (5) expression -> MINUS . expression
-    (1) expression -> . expression PLUS expression
-    (2) expression -> . expression MINUS expression
-    (3) expression -> . expression TIMES expression
-    (4) expression -> . expression DIVIDE expression
-    (5) expression -> . MINUS expression
-    (6) expression -> . LPAREN expression RPAREN
-    (7) expression -> . NUMBER
-    (8) expression -> . expression EXPONENT expression
-    (9) expression -> . expression MOD expression
-    (10) expression -> . SQRT LPAREN expression RPAREN
+    (1) statement -> assignment .
 
-    MINUS           shift and go to state 2
-    LPAREN          shift and go to state 3
-    NUMBER          shift and go to state 4
-    SQRT            shift and go to state 5
+    $end            reduce using rule 1 (statement -> assignment .)
 
-    expression                     shift and go to state 12
 
 state 3
 
-    (6) expression -> LPAREN . expression RPAREN
-    (1) expression -> . expression PLUS expression
-    (2) expression -> . expression MINUS expression
-    (3) expression -> . expression TIMES expression
-    (4) expression -> . expression DIVIDE expression
-    (5) expression -> . MINUS expression
-    (6) expression -> . LPAREN expression RPAREN
-    (7) expression -> . NUMBER
-    (8) expression -> . expression EXPONENT expression
-    (9) expression -> . expression MOD expression
-    (10) expression -> . SQRT LPAREN expression RPAREN
+    (2) statement -> expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (11) expression -> expression . EXPONENT expression
+    (12) expression -> expression . MOD expression
 
-    MINUS           shift and go to state 2
-    LPAREN          shift and go to state 3
-    NUMBER          shift and go to state 4
-    SQRT            shift and go to state 5
+    $end            reduce using rule 2 (statement -> expression .)
+    PLUS            shift and go to state 9
+    MINUS           shift and go to state 10
+    TIMES           shift and go to state 11
+    DIVIDE          shift and go to state 12
+    EXPONENT        shift and go to state 13
+    MOD             shift and go to state 14
 
-    expression                     shift and go to state 13
 
 state 4
 
-    (7) expression -> NUMBER .
+    (3) assignment -> IDENTIFIER . EQUALS expression
+    (14) expression -> IDENTIFIER .
 
-    PLUS            reduce using rule 7 (expression -> NUMBER .)
-    MINUS           reduce using rule 7 (expression -> NUMBER .)
-    TIMES           reduce using rule 7 (expression -> NUMBER .)
-    DIVIDE          reduce using rule 7 (expression -> NUMBER .)
-    EXPONENT        reduce using rule 7 (expression -> NUMBER .)
-    MOD             reduce using rule 7 (expression -> NUMBER .)
-    $end            reduce using rule 7 (expression -> NUMBER .)
-    RPAREN          reduce using rule 7 (expression -> NUMBER .)
+    EQUALS          shift and go to state 15
+    PLUS            reduce using rule 14 (expression -> IDENTIFIER .)
+    MINUS           reduce using rule 14 (expression -> IDENTIFIER .)
+    TIMES           reduce using rule 14 (expression -> IDENTIFIER .)
+    DIVIDE          reduce using rule 14 (expression -> IDENTIFIER .)
+    EXPONENT        reduce using rule 14 (expression -> IDENTIFIER .)
+    MOD             reduce using rule 14 (expression -> IDENTIFIER .)
+    $end            reduce using rule 14 (expression -> IDENTIFIER .)
 
 
 state 5
 
-    (10) expression -> SQRT . LPAREN expression RPAREN
+    (8) expression -> MINUS . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . MINUS expression
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . NUMBER
+    (11) expression -> . expression EXPONENT expression
+    (12) expression -> . expression MOD expression
+    (13) expression -> . SQRT LPAREN expression RPAREN
+    (14) expression -> . IDENTIFIER
 
-    LPAREN          shift and go to state 14
-
-
-state 6
-
-    (1) expression -> expression PLUS . expression
-    (1) expression -> . expression PLUS expression
-    (2) expression -> . expression MINUS expression
-    (3) expression -> . expression TIMES expression
-    (4) expression -> . expression DIVIDE expression
-    (5) expression -> . MINUS expression
-    (6) expression -> . LPAREN expression RPAREN
-    (7) expression -> . NUMBER
-    (8) expression -> . expression EXPONENT expression
-    (9) expression -> . expression MOD expression
-    (10) expression -> . SQRT LPAREN expression RPAREN
-
-    MINUS           shift and go to state 2
-    LPAREN          shift and go to state 3
-    NUMBER          shift and go to state 4
-    SQRT            shift and go to state 5
-
-    expression                     shift and go to state 15
-
-state 7
-
-    (2) expression -> expression MINUS . expression
-    (1) expression -> . expression PLUS expression
-    (2) expression -> . expression MINUS expression
-    (3) expression -> . expression TIMES expression
-    (4) expression -> . expression DIVIDE expression
-    (5) expression -> . MINUS expression
-    (6) expression -> . LPAREN expression RPAREN
-    (7) expression -> . NUMBER
-    (8) expression -> . expression EXPONENT expression
-    (9) expression -> . expression MOD expression
-    (10) expression -> . SQRT LPAREN expression RPAREN
-
-    MINUS           shift and go to state 2
-    LPAREN          shift and go to state 3
-    NUMBER          shift and go to state 4
-    SQRT            shift and go to state 5
+    MINUS           shift and go to state 5
+    LPAREN          shift and go to state 6
+    NUMBER          shift and go to state 7
+    SQRT            shift and go to state 8
+    IDENTIFIER      shift and go to state 17
 
     expression                     shift and go to state 16
 
-state 8
+state 6
 
-    (3) expression -> expression TIMES . expression
-    (1) expression -> . expression PLUS expression
-    (2) expression -> . expression MINUS expression
-    (3) expression -> . expression TIMES expression
-    (4) expression -> . expression DIVIDE expression
-    (5) expression -> . MINUS expression
-    (6) expression -> . LPAREN expression RPAREN
-    (7) expression -> . NUMBER
-    (8) expression -> . expression EXPONENT expression
-    (9) expression -> . expression MOD expression
-    (10) expression -> . SQRT LPAREN expression RPAREN
+    (9) expression -> LPAREN . expression RPAREN
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . MINUS expression
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . NUMBER
+    (11) expression -> . expression EXPONENT expression
+    (12) expression -> . expression MOD expression
+    (13) expression -> . SQRT LPAREN expression RPAREN
+    (14) expression -> . IDENTIFIER
 
-    MINUS           shift and go to state 2
-    LPAREN          shift and go to state 3
-    NUMBER          shift and go to state 4
-    SQRT            shift and go to state 5
-
-    expression                     shift and go to state 17
-
-state 9
-
-    (4) expression -> expression DIVIDE . expression
-    (1) expression -> . expression PLUS expression
-    (2) expression -> . expression MINUS expression
-    (3) expression -> . expression TIMES expression
-    (4) expression -> . expression DIVIDE expression
-    (5) expression -> . MINUS expression
-    (6) expression -> . LPAREN expression RPAREN
-    (7) expression -> . NUMBER
-    (8) expression -> . expression EXPONENT expression
-    (9) expression -> . expression MOD expression
-    (10) expression -> . SQRT LPAREN expression RPAREN
-
-    MINUS           shift and go to state 2
-    LPAREN          shift and go to state 3
-    NUMBER          shift and go to state 4
-    SQRT            shift and go to state 5
+    MINUS           shift and go to state 5
+    LPAREN          shift and go to state 6
+    NUMBER          shift and go to state 7
+    SQRT            shift and go to state 8
+    IDENTIFIER      shift and go to state 17
 
     expression                     shift and go to state 18
 
-state 10
+state 7
 
-    (8) expression -> expression EXPONENT . expression
-    (1) expression -> . expression PLUS expression
-    (2) expression -> . expression MINUS expression
-    (3) expression -> . expression TIMES expression
-    (4) expression -> . expression DIVIDE expression
-    (5) expression -> . MINUS expression
-    (6) expression -> . LPAREN expression RPAREN
-    (7) expression -> . NUMBER
-    (8) expression -> . expression EXPONENT expression
-    (9) expression -> . expression MOD expression
-    (10) expression -> . SQRT LPAREN expression RPAREN
+    (10) expression -> NUMBER .
 
-    MINUS           shift and go to state 2
-    LPAREN          shift and go to state 3
-    NUMBER          shift and go to state 4
-    SQRT            shift and go to state 5
+    PLUS            reduce using rule 10 (expression -> NUMBER .)
+    MINUS           reduce using rule 10 (expression -> NUMBER .)
+    TIMES           reduce using rule 10 (expression -> NUMBER .)
+    DIVIDE          reduce using rule 10 (expression -> NUMBER .)
+    EXPONENT        reduce using rule 10 (expression -> NUMBER .)
+    MOD             reduce using rule 10 (expression -> NUMBER .)
+    $end            reduce using rule 10 (expression -> NUMBER .)
+    RPAREN          reduce using rule 10 (expression -> NUMBER .)
 
-    expression                     shift and go to state 19
 
-state 11
+state 8
 
-    (9) expression -> expression MOD . expression
-    (1) expression -> . expression PLUS expression
-    (2) expression -> . expression MINUS expression
-    (3) expression -> . expression TIMES expression
-    (4) expression -> . expression DIVIDE expression
-    (5) expression -> . MINUS expression
-    (6) expression -> . LPAREN expression RPAREN
-    (7) expression -> . NUMBER
-    (8) expression -> . expression EXPONENT expression
-    (9) expression -> . expression MOD expression
-    (10) expression -> . SQRT LPAREN expression RPAREN
+    (13) expression -> SQRT . LPAREN expression RPAREN
 
-    MINUS           shift and go to state 2
-    LPAREN          shift and go to state 3
-    NUMBER          shift and go to state 4
-    SQRT            shift and go to state 5
+    LPAREN          shift and go to state 19
+
+
+state 9
+
+    (4) expression -> expression PLUS . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . MINUS expression
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . NUMBER
+    (11) expression -> . expression EXPONENT expression
+    (12) expression -> . expression MOD expression
+    (13) expression -> . SQRT LPAREN expression RPAREN
+    (14) expression -> . IDENTIFIER
+
+    MINUS           shift and go to state 5
+    LPAREN          shift and go to state 6
+    NUMBER          shift and go to state 7
+    SQRT            shift and go to state 8
+    IDENTIFIER      shift and go to state 17
 
     expression                     shift and go to state 20
 
-state 12
+state 10
 
-    (5) expression -> MINUS expression .
-    (1) expression -> expression . PLUS expression
-    (2) expression -> expression . MINUS expression
-    (3) expression -> expression . TIMES expression
-    (4) expression -> expression . DIVIDE expression
-    (8) expression -> expression . EXPONENT expression
-    (9) expression -> expression . MOD expression
+    (5) expression -> expression MINUS . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . MINUS expression
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . NUMBER
+    (11) expression -> . expression EXPONENT expression
+    (12) expression -> . expression MOD expression
+    (13) expression -> . SQRT LPAREN expression RPAREN
+    (14) expression -> . IDENTIFIER
 
-    PLUS            reduce using rule 5 (expression -> MINUS expression .)
-    MINUS           reduce using rule 5 (expression -> MINUS expression .)
-    TIMES           reduce using rule 5 (expression -> MINUS expression .)
-    DIVIDE          reduce using rule 5 (expression -> MINUS expression .)
-    $end            reduce using rule 5 (expression -> MINUS expression .)
-    RPAREN          reduce using rule 5 (expression -> MINUS expression .)
-    EXPONENT        shift and go to state 10
-    MOD             shift and go to state 11
+    MINUS           shift and go to state 5
+    LPAREN          shift and go to state 6
+    NUMBER          shift and go to state 7
+    SQRT            shift and go to state 8
+    IDENTIFIER      shift and go to state 17
 
-  ! EXPONENT        [ reduce using rule 5 (expression -> MINUS expression .) ]
-  ! MOD             [ reduce using rule 5 (expression -> MINUS expression .) ]
-  ! PLUS            [ shift and go to state 6 ]
-  ! MINUS           [ shift and go to state 7 ]
-  ! TIMES           [ shift and go to state 8 ]
-  ! DIVIDE          [ shift and go to state 9 ]
+    expression                     shift and go to state 21
 
+state 11
 
-state 13
+    (6) expression -> expression TIMES . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . MINUS expression
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . NUMBER
+    (11) expression -> . expression EXPONENT expression
+    (12) expression -> . expression MOD expression
+    (13) expression -> . SQRT LPAREN expression RPAREN
+    (14) expression -> . IDENTIFIER
 
-    (6) expression -> LPAREN expression . RPAREN
-    (1) expression -> expression . PLUS expression
-    (2) expression -> expression . MINUS expression
-    (3) expression -> expression . TIMES expression
-    (4) expression -> expression . DIVIDE expression
-    (8) expression -> expression . EXPONENT expression
-    (9) expression -> expression . MOD expression
-
-    RPAREN          shift and go to state 21
-    PLUS            shift and go to state 6
-    MINUS           shift and go to state 7
-    TIMES           shift and go to state 8
-    DIVIDE          shift and go to state 9
-    EXPONENT        shift and go to state 10
-    MOD             shift and go to state 11
-
-
-state 14
-
-    (10) expression -> SQRT LPAREN . expression RPAREN
-    (1) expression -> . expression PLUS expression
-    (2) expression -> . expression MINUS expression
-    (3) expression -> . expression TIMES expression
-    (4) expression -> . expression DIVIDE expression
-    (5) expression -> . MINUS expression
-    (6) expression -> . LPAREN expression RPAREN
-    (7) expression -> . NUMBER
-    (8) expression -> . expression EXPONENT expression
-    (9) expression -> . expression MOD expression
-    (10) expression -> . SQRT LPAREN expression RPAREN
-
-    MINUS           shift and go to state 2
-    LPAREN          shift and go to state 3
-    NUMBER          shift and go to state 4
-    SQRT            shift and go to state 5
+    MINUS           shift and go to state 5
+    LPAREN          shift and go to state 6
+    NUMBER          shift and go to state 7
+    SQRT            shift and go to state 8
+    IDENTIFIER      shift and go to state 17
 
     expression                     shift and go to state 22
 
+state 12
+
+    (7) expression -> expression DIVIDE . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . MINUS expression
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . NUMBER
+    (11) expression -> . expression EXPONENT expression
+    (12) expression -> . expression MOD expression
+    (13) expression -> . SQRT LPAREN expression RPAREN
+    (14) expression -> . IDENTIFIER
+
+    MINUS           shift and go to state 5
+    LPAREN          shift and go to state 6
+    NUMBER          shift and go to state 7
+    SQRT            shift and go to state 8
+    IDENTIFIER      shift and go to state 17
+
+    expression                     shift and go to state 23
+
+state 13
+
+    (11) expression -> expression EXPONENT . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . MINUS expression
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . NUMBER
+    (11) expression -> . expression EXPONENT expression
+    (12) expression -> . expression MOD expression
+    (13) expression -> . SQRT LPAREN expression RPAREN
+    (14) expression -> . IDENTIFIER
+
+    MINUS           shift and go to state 5
+    LPAREN          shift and go to state 6
+    NUMBER          shift and go to state 7
+    SQRT            shift and go to state 8
+    IDENTIFIER      shift and go to state 17
+
+    expression                     shift and go to state 24
+
+state 14
+
+    (12) expression -> expression MOD . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . MINUS expression
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . NUMBER
+    (11) expression -> . expression EXPONENT expression
+    (12) expression -> . expression MOD expression
+    (13) expression -> . SQRT LPAREN expression RPAREN
+    (14) expression -> . IDENTIFIER
+
+    MINUS           shift and go to state 5
+    LPAREN          shift and go to state 6
+    NUMBER          shift and go to state 7
+    SQRT            shift and go to state 8
+    IDENTIFIER      shift and go to state 17
+
+    expression                     shift and go to state 25
+
 state 15
 
-    (1) expression -> expression PLUS expression .
-    (1) expression -> expression . PLUS expression
-    (2) expression -> expression . MINUS expression
-    (3) expression -> expression . TIMES expression
-    (4) expression -> expression . DIVIDE expression
-    (8) expression -> expression . EXPONENT expression
-    (9) expression -> expression . MOD expression
+    (3) assignment -> IDENTIFIER EQUALS . expression
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . MINUS expression
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . NUMBER
+    (11) expression -> . expression EXPONENT expression
+    (12) expression -> . expression MOD expression
+    (13) expression -> . SQRT LPAREN expression RPAREN
+    (14) expression -> . IDENTIFIER
 
-    PLUS            reduce using rule 1 (expression -> expression PLUS expression .)
-    MINUS           reduce using rule 1 (expression -> expression PLUS expression .)
-    $end            reduce using rule 1 (expression -> expression PLUS expression .)
-    RPAREN          reduce using rule 1 (expression -> expression PLUS expression .)
-    TIMES           shift and go to state 8
-    DIVIDE          shift and go to state 9
-    EXPONENT        shift and go to state 10
-    MOD             shift and go to state 11
+    MINUS           shift and go to state 5
+    LPAREN          shift and go to state 6
+    NUMBER          shift and go to state 7
+    SQRT            shift and go to state 8
+    IDENTIFIER      shift and go to state 17
 
-  ! TIMES           [ reduce using rule 1 (expression -> expression PLUS expression .) ]
-  ! DIVIDE          [ reduce using rule 1 (expression -> expression PLUS expression .) ]
-  ! EXPONENT        [ reduce using rule 1 (expression -> expression PLUS expression .) ]
-  ! MOD             [ reduce using rule 1 (expression -> expression PLUS expression .) ]
-  ! PLUS            [ shift and go to state 6 ]
-  ! MINUS           [ shift and go to state 7 ]
-
+    expression                     shift and go to state 26
 
 state 16
 
-    (2) expression -> expression MINUS expression .
-    (1) expression -> expression . PLUS expression
-    (2) expression -> expression . MINUS expression
-    (3) expression -> expression . TIMES expression
-    (4) expression -> expression . DIVIDE expression
-    (8) expression -> expression . EXPONENT expression
-    (9) expression -> expression . MOD expression
+    (8) expression -> MINUS expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (11) expression -> expression . EXPONENT expression
+    (12) expression -> expression . MOD expression
 
-    PLUS            reduce using rule 2 (expression -> expression MINUS expression .)
-    MINUS           reduce using rule 2 (expression -> expression MINUS expression .)
-    $end            reduce using rule 2 (expression -> expression MINUS expression .)
-    RPAREN          reduce using rule 2 (expression -> expression MINUS expression .)
-    TIMES           shift and go to state 8
-    DIVIDE          shift and go to state 9
-    EXPONENT        shift and go to state 10
-    MOD             shift and go to state 11
+    PLUS            reduce using rule 8 (expression -> MINUS expression .)
+    MINUS           reduce using rule 8 (expression -> MINUS expression .)
+    TIMES           reduce using rule 8 (expression -> MINUS expression .)
+    DIVIDE          reduce using rule 8 (expression -> MINUS expression .)
+    $end            reduce using rule 8 (expression -> MINUS expression .)
+    RPAREN          reduce using rule 8 (expression -> MINUS expression .)
+    EXPONENT        shift and go to state 13
+    MOD             shift and go to state 14
 
-  ! TIMES           [ reduce using rule 2 (expression -> expression MINUS expression .) ]
-  ! DIVIDE          [ reduce using rule 2 (expression -> expression MINUS expression .) ]
-  ! EXPONENT        [ reduce using rule 2 (expression -> expression MINUS expression .) ]
-  ! MOD             [ reduce using rule 2 (expression -> expression MINUS expression .) ]
-  ! PLUS            [ shift and go to state 6 ]
-  ! MINUS           [ shift and go to state 7 ]
+  ! EXPONENT        [ reduce using rule 8 (expression -> MINUS expression .) ]
+  ! MOD             [ reduce using rule 8 (expression -> MINUS expression .) ]
+  ! PLUS            [ shift and go to state 9 ]
+  ! MINUS           [ shift and go to state 10 ]
+  ! TIMES           [ shift and go to state 11 ]
+  ! DIVIDE          [ shift and go to state 12 ]
 
 
 state 17
 
-    (3) expression -> expression TIMES expression .
-    (1) expression -> expression . PLUS expression
-    (2) expression -> expression . MINUS expression
-    (3) expression -> expression . TIMES expression
-    (4) expression -> expression . DIVIDE expression
-    (8) expression -> expression . EXPONENT expression
-    (9) expression -> expression . MOD expression
+    (14) expression -> IDENTIFIER .
 
-    PLUS            reduce using rule 3 (expression -> expression TIMES expression .)
-    MINUS           reduce using rule 3 (expression -> expression TIMES expression .)
-    TIMES           reduce using rule 3 (expression -> expression TIMES expression .)
-    DIVIDE          reduce using rule 3 (expression -> expression TIMES expression .)
-    $end            reduce using rule 3 (expression -> expression TIMES expression .)
-    RPAREN          reduce using rule 3 (expression -> expression TIMES expression .)
-    EXPONENT        shift and go to state 10
-    MOD             shift and go to state 11
-
-  ! EXPONENT        [ reduce using rule 3 (expression -> expression TIMES expression .) ]
-  ! MOD             [ reduce using rule 3 (expression -> expression TIMES expression .) ]
-  ! PLUS            [ shift and go to state 6 ]
-  ! MINUS           [ shift and go to state 7 ]
-  ! TIMES           [ shift and go to state 8 ]
-  ! DIVIDE          [ shift and go to state 9 ]
+    PLUS            reduce using rule 14 (expression -> IDENTIFIER .)
+    MINUS           reduce using rule 14 (expression -> IDENTIFIER .)
+    TIMES           reduce using rule 14 (expression -> IDENTIFIER .)
+    DIVIDE          reduce using rule 14 (expression -> IDENTIFIER .)
+    EXPONENT        reduce using rule 14 (expression -> IDENTIFIER .)
+    MOD             reduce using rule 14 (expression -> IDENTIFIER .)
+    $end            reduce using rule 14 (expression -> IDENTIFIER .)
+    RPAREN          reduce using rule 14 (expression -> IDENTIFIER .)
 
 
 state 18
 
-    (4) expression -> expression DIVIDE expression .
-    (1) expression -> expression . PLUS expression
-    (2) expression -> expression . MINUS expression
-    (3) expression -> expression . TIMES expression
-    (4) expression -> expression . DIVIDE expression
-    (8) expression -> expression . EXPONENT expression
-    (9) expression -> expression . MOD expression
+    (9) expression -> LPAREN expression . RPAREN
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (11) expression -> expression . EXPONENT expression
+    (12) expression -> expression . MOD expression
 
-    PLUS            reduce using rule 4 (expression -> expression DIVIDE expression .)
-    MINUS           reduce using rule 4 (expression -> expression DIVIDE expression .)
-    TIMES           reduce using rule 4 (expression -> expression DIVIDE expression .)
-    DIVIDE          reduce using rule 4 (expression -> expression DIVIDE expression .)
-    $end            reduce using rule 4 (expression -> expression DIVIDE expression .)
-    RPAREN          reduce using rule 4 (expression -> expression DIVIDE expression .)
-    EXPONENT        shift and go to state 10
-    MOD             shift and go to state 11
-
-  ! EXPONENT        [ reduce using rule 4 (expression -> expression DIVIDE expression .) ]
-  ! MOD             [ reduce using rule 4 (expression -> expression DIVIDE expression .) ]
-  ! PLUS            [ shift and go to state 6 ]
-  ! MINUS           [ shift and go to state 7 ]
-  ! TIMES           [ shift and go to state 8 ]
-  ! DIVIDE          [ shift and go to state 9 ]
+    RPAREN          shift and go to state 27
+    PLUS            shift and go to state 9
+    MINUS           shift and go to state 10
+    TIMES           shift and go to state 11
+    DIVIDE          shift and go to state 12
+    EXPONENT        shift and go to state 13
+    MOD             shift and go to state 14
 
 
 state 19
 
-    (8) expression -> expression EXPONENT expression .
-    (1) expression -> expression . PLUS expression
-    (2) expression -> expression . MINUS expression
-    (3) expression -> expression . TIMES expression
-    (4) expression -> expression . DIVIDE expression
-    (8) expression -> expression . EXPONENT expression
-    (9) expression -> expression . MOD expression
+    (13) expression -> SQRT LPAREN . expression RPAREN
+    (4) expression -> . expression PLUS expression
+    (5) expression -> . expression MINUS expression
+    (6) expression -> . expression TIMES expression
+    (7) expression -> . expression DIVIDE expression
+    (8) expression -> . MINUS expression
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . NUMBER
+    (11) expression -> . expression EXPONENT expression
+    (12) expression -> . expression MOD expression
+    (13) expression -> . SQRT LPAREN expression RPAREN
+    (14) expression -> . IDENTIFIER
 
-    PLUS            reduce using rule 8 (expression -> expression EXPONENT expression .)
-    MINUS           reduce using rule 8 (expression -> expression EXPONENT expression .)
-    TIMES           reduce using rule 8 (expression -> expression EXPONENT expression .)
-    DIVIDE          reduce using rule 8 (expression -> expression EXPONENT expression .)
-    EXPONENT        reduce using rule 8 (expression -> expression EXPONENT expression .)
-    $end            reduce using rule 8 (expression -> expression EXPONENT expression .)
-    RPAREN          reduce using rule 8 (expression -> expression EXPONENT expression .)
-    MOD             shift and go to state 11
+    MINUS           shift and go to state 5
+    LPAREN          shift and go to state 6
+    NUMBER          shift and go to state 7
+    SQRT            shift and go to state 8
+    IDENTIFIER      shift and go to state 17
 
-  ! MOD             [ reduce using rule 8 (expression -> expression EXPONENT expression .) ]
-  ! PLUS            [ shift and go to state 6 ]
-  ! MINUS           [ shift and go to state 7 ]
-  ! TIMES           [ shift and go to state 8 ]
-  ! DIVIDE          [ shift and go to state 9 ]
-  ! EXPONENT        [ shift and go to state 10 ]
-
+    expression                     shift and go to state 28
 
 state 20
 
-    (9) expression -> expression MOD expression .
-    (1) expression -> expression . PLUS expression
-    (2) expression -> expression . MINUS expression
-    (3) expression -> expression . TIMES expression
-    (4) expression -> expression . DIVIDE expression
-    (8) expression -> expression . EXPONENT expression
-    (9) expression -> expression . MOD expression
+    (4) expression -> expression PLUS expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (11) expression -> expression . EXPONENT expression
+    (12) expression -> expression . MOD expression
 
-    PLUS            reduce using rule 9 (expression -> expression MOD expression .)
-    MINUS           reduce using rule 9 (expression -> expression MOD expression .)
-    TIMES           reduce using rule 9 (expression -> expression MOD expression .)
-    DIVIDE          reduce using rule 9 (expression -> expression MOD expression .)
-    EXPONENT        reduce using rule 9 (expression -> expression MOD expression .)
-    MOD             reduce using rule 9 (expression -> expression MOD expression .)
-    $end            reduce using rule 9 (expression -> expression MOD expression .)
-    RPAREN          reduce using rule 9 (expression -> expression MOD expression .)
+    PLUS            reduce using rule 4 (expression -> expression PLUS expression .)
+    MINUS           reduce using rule 4 (expression -> expression PLUS expression .)
+    $end            reduce using rule 4 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 4 (expression -> expression PLUS expression .)
+    TIMES           shift and go to state 11
+    DIVIDE          shift and go to state 12
+    EXPONENT        shift and go to state 13
+    MOD             shift and go to state 14
 
-  ! PLUS            [ shift and go to state 6 ]
-  ! MINUS           [ shift and go to state 7 ]
-  ! TIMES           [ shift and go to state 8 ]
-  ! DIVIDE          [ shift and go to state 9 ]
-  ! EXPONENT        [ shift and go to state 10 ]
-  ! MOD             [ shift and go to state 11 ]
+  ! TIMES           [ reduce using rule 4 (expression -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 4 (expression -> expression PLUS expression .) ]
+  ! EXPONENT        [ reduce using rule 4 (expression -> expression PLUS expression .) ]
+  ! MOD             [ reduce using rule 4 (expression -> expression PLUS expression .) ]
+  ! PLUS            [ shift and go to state 9 ]
+  ! MINUS           [ shift and go to state 10 ]
 
 
 state 21
 
-    (6) expression -> LPAREN expression RPAREN .
+    (5) expression -> expression MINUS expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (11) expression -> expression . EXPONENT expression
+    (12) expression -> expression . MOD expression
 
-    PLUS            reduce using rule 6 (expression -> LPAREN expression RPAREN .)
-    MINUS           reduce using rule 6 (expression -> LPAREN expression RPAREN .)
-    TIMES           reduce using rule 6 (expression -> LPAREN expression RPAREN .)
-    DIVIDE          reduce using rule 6 (expression -> LPAREN expression RPAREN .)
-    EXPONENT        reduce using rule 6 (expression -> LPAREN expression RPAREN .)
-    MOD             reduce using rule 6 (expression -> LPAREN expression RPAREN .)
-    $end            reduce using rule 6 (expression -> LPAREN expression RPAREN .)
-    RPAREN          reduce using rule 6 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 5 (expression -> expression MINUS expression .)
+    MINUS           reduce using rule 5 (expression -> expression MINUS expression .)
+    $end            reduce using rule 5 (expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 5 (expression -> expression MINUS expression .)
+    TIMES           shift and go to state 11
+    DIVIDE          shift and go to state 12
+    EXPONENT        shift and go to state 13
+    MOD             shift and go to state 14
+
+  ! TIMES           [ reduce using rule 5 (expression -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 5 (expression -> expression MINUS expression .) ]
+  ! EXPONENT        [ reduce using rule 5 (expression -> expression MINUS expression .) ]
+  ! MOD             [ reduce using rule 5 (expression -> expression MINUS expression .) ]
+  ! PLUS            [ shift and go to state 9 ]
+  ! MINUS           [ shift and go to state 10 ]
 
 
 state 22
 
-    (10) expression -> SQRT LPAREN expression . RPAREN
-    (1) expression -> expression . PLUS expression
-    (2) expression -> expression . MINUS expression
-    (3) expression -> expression . TIMES expression
-    (4) expression -> expression . DIVIDE expression
-    (8) expression -> expression . EXPONENT expression
-    (9) expression -> expression . MOD expression
+    (6) expression -> expression TIMES expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (11) expression -> expression . EXPONENT expression
+    (12) expression -> expression . MOD expression
 
-    RPAREN          shift and go to state 23
-    PLUS            shift and go to state 6
-    MINUS           shift and go to state 7
-    TIMES           shift and go to state 8
-    DIVIDE          shift and go to state 9
-    EXPONENT        shift and go to state 10
-    MOD             shift and go to state 11
+    PLUS            reduce using rule 6 (expression -> expression TIMES expression .)
+    MINUS           reduce using rule 6 (expression -> expression TIMES expression .)
+    TIMES           reduce using rule 6 (expression -> expression TIMES expression .)
+    DIVIDE          reduce using rule 6 (expression -> expression TIMES expression .)
+    $end            reduce using rule 6 (expression -> expression TIMES expression .)
+    RPAREN          reduce using rule 6 (expression -> expression TIMES expression .)
+    EXPONENT        shift and go to state 13
+    MOD             shift and go to state 14
+
+  ! EXPONENT        [ reduce using rule 6 (expression -> expression TIMES expression .) ]
+  ! MOD             [ reduce using rule 6 (expression -> expression TIMES expression .) ]
+  ! PLUS            [ shift and go to state 9 ]
+  ! MINUS           [ shift and go to state 10 ]
+  ! TIMES           [ shift and go to state 11 ]
+  ! DIVIDE          [ shift and go to state 12 ]
 
 
 state 23
 
-    (10) expression -> SQRT LPAREN expression RPAREN .
+    (7) expression -> expression DIVIDE expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (11) expression -> expression . EXPONENT expression
+    (12) expression -> expression . MOD expression
 
-    PLUS            reduce using rule 10 (expression -> SQRT LPAREN expression RPAREN .)
-    MINUS           reduce using rule 10 (expression -> SQRT LPAREN expression RPAREN .)
-    TIMES           reduce using rule 10 (expression -> SQRT LPAREN expression RPAREN .)
-    DIVIDE          reduce using rule 10 (expression -> SQRT LPAREN expression RPAREN .)
-    EXPONENT        reduce using rule 10 (expression -> SQRT LPAREN expression RPAREN .)
-    MOD             reduce using rule 10 (expression -> SQRT LPAREN expression RPAREN .)
-    $end            reduce using rule 10 (expression -> SQRT LPAREN expression RPAREN .)
-    RPAREN          reduce using rule 10 (expression -> SQRT LPAREN expression RPAREN .)
+    PLUS            reduce using rule 7 (expression -> expression DIVIDE expression .)
+    MINUS           reduce using rule 7 (expression -> expression DIVIDE expression .)
+    TIMES           reduce using rule 7 (expression -> expression DIVIDE expression .)
+    DIVIDE          reduce using rule 7 (expression -> expression DIVIDE expression .)
+    $end            reduce using rule 7 (expression -> expression DIVIDE expression .)
+    RPAREN          reduce using rule 7 (expression -> expression DIVIDE expression .)
+    EXPONENT        shift and go to state 13
+    MOD             shift and go to state 14
+
+  ! EXPONENT        [ reduce using rule 7 (expression -> expression DIVIDE expression .) ]
+  ! MOD             [ reduce using rule 7 (expression -> expression DIVIDE expression .) ]
+  ! PLUS            [ shift and go to state 9 ]
+  ! MINUS           [ shift and go to state 10 ]
+  ! TIMES           [ shift and go to state 11 ]
+  ! DIVIDE          [ shift and go to state 12 ]
+
+
+state 24
+
+    (11) expression -> expression EXPONENT expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (11) expression -> expression . EXPONENT expression
+    (12) expression -> expression . MOD expression
+
+    PLUS            reduce using rule 11 (expression -> expression EXPONENT expression .)
+    MINUS           reduce using rule 11 (expression -> expression EXPONENT expression .)
+    TIMES           reduce using rule 11 (expression -> expression EXPONENT expression .)
+    DIVIDE          reduce using rule 11 (expression -> expression EXPONENT expression .)
+    EXPONENT        reduce using rule 11 (expression -> expression EXPONENT expression .)
+    $end            reduce using rule 11 (expression -> expression EXPONENT expression .)
+    RPAREN          reduce using rule 11 (expression -> expression EXPONENT expression .)
+    MOD             shift and go to state 14
+
+  ! MOD             [ reduce using rule 11 (expression -> expression EXPONENT expression .) ]
+  ! PLUS            [ shift and go to state 9 ]
+  ! MINUS           [ shift and go to state 10 ]
+  ! TIMES           [ shift and go to state 11 ]
+  ! DIVIDE          [ shift and go to state 12 ]
+  ! EXPONENT        [ shift and go to state 13 ]
+
+
+state 25
+
+    (12) expression -> expression MOD expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (11) expression -> expression . EXPONENT expression
+    (12) expression -> expression . MOD expression
+
+    PLUS            reduce using rule 12 (expression -> expression MOD expression .)
+    MINUS           reduce using rule 12 (expression -> expression MOD expression .)
+    TIMES           reduce using rule 12 (expression -> expression MOD expression .)
+    DIVIDE          reduce using rule 12 (expression -> expression MOD expression .)
+    EXPONENT        reduce using rule 12 (expression -> expression MOD expression .)
+    MOD             reduce using rule 12 (expression -> expression MOD expression .)
+    $end            reduce using rule 12 (expression -> expression MOD expression .)
+    RPAREN          reduce using rule 12 (expression -> expression MOD expression .)
+
+  ! PLUS            [ shift and go to state 9 ]
+  ! MINUS           [ shift and go to state 10 ]
+  ! TIMES           [ shift and go to state 11 ]
+  ! DIVIDE          [ shift and go to state 12 ]
+  ! EXPONENT        [ shift and go to state 13 ]
+  ! MOD             [ shift and go to state 14 ]
+
+
+state 26
+
+    (3) assignment -> IDENTIFIER EQUALS expression .
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (11) expression -> expression . EXPONENT expression
+    (12) expression -> expression . MOD expression
+
+    $end            reduce using rule 3 (assignment -> IDENTIFIER EQUALS expression .)
+    PLUS            shift and go to state 9
+    MINUS           shift and go to state 10
+    TIMES           shift and go to state 11
+    DIVIDE          shift and go to state 12
+    EXPONENT        shift and go to state 13
+    MOD             shift and go to state 14
+
+
+state 27
+
+    (9) expression -> LPAREN expression RPAREN .
+
+    PLUS            reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    EXPONENT        reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    MOD             reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    $end            reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+
+
+state 28
+
+    (13) expression -> SQRT LPAREN expression . RPAREN
+    (4) expression -> expression . PLUS expression
+    (5) expression -> expression . MINUS expression
+    (6) expression -> expression . TIMES expression
+    (7) expression -> expression . DIVIDE expression
+    (11) expression -> expression . EXPONENT expression
+    (12) expression -> expression . MOD expression
+
+    RPAREN          shift and go to state 29
+    PLUS            shift and go to state 9
+    MINUS           shift and go to state 10
+    TIMES           shift and go to state 11
+    DIVIDE          shift and go to state 12
+    EXPONENT        shift and go to state 13
+    MOD             shift and go to state 14
+
+
+state 29
+
+    (13) expression -> SQRT LPAREN expression RPAREN .
+
+    PLUS            reduce using rule 13 (expression -> SQRT LPAREN expression RPAREN .)
+    MINUS           reduce using rule 13 (expression -> SQRT LPAREN expression RPAREN .)
+    TIMES           reduce using rule 13 (expression -> SQRT LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 13 (expression -> SQRT LPAREN expression RPAREN .)
+    EXPONENT        reduce using rule 13 (expression -> SQRT LPAREN expression RPAREN .)
+    MOD             reduce using rule 13 (expression -> SQRT LPAREN expression RPAREN .)
+    $end            reduce using rule 13 (expression -> SQRT LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 13 (expression -> SQRT LPAREN expression RPAREN .)
 
