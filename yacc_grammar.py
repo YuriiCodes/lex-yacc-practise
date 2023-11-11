@@ -1,8 +1,5 @@
-import math
-
 import ply.yacc as yacc
 from lex import tokens
-
 # Indirect Usage: In PLY, the tokens variable from the lex file is used indirectly by the Yacc module
 # to ensure that the tokens defined in the lexer match up with those used in the parser. This linkage
 # is crucial for the lexer and parser to work together correctly. However, this use is not in the form
@@ -10,6 +7,10 @@ from lex import tokens
 
 # Parsing rules
 # Precedence rules for the arithmetic operators
+# The precedence tuple in PLY (Python Lex-Yacc) is
+# used to define operator precedence and associativity in your parser.
+# This is important for ensuring that arithmetic expressions are parsed
+# and evaluated in the correct order, according to standard mathematical rules
 precedence = (
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE'),
@@ -17,7 +18,6 @@ precedence = (
     ('left', 'EXPONENT'),
 )
 
-start = 'statement'
 
 # Dictionary to store variable values
 variables = {}
@@ -39,6 +39,8 @@ def p_assignment(p):
 
 
 # Grammar rules and actions
+
+# Grammar rule for handling binary operations in arithmetic expressions.
 def p_expression_binop(p):
     '''expression : expression PLUS expression
                   | expression MINUS expression

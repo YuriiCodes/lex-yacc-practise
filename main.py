@@ -1,4 +1,4 @@
-from yacc_parser import parser
+from yacc_grammar import parser
 
 
 def main():
