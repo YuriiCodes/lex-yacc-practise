@@ -10,8 +10,6 @@ tokens = (
     'LPAREN', # for (
     'RPAREN', # for )
     'EXPONENT',  # for ^
-    'SQRT',  # for sqrt
-    'MOD',  # for mod
     'IDENTIFIER',
     'EQUALS',
 )
@@ -24,7 +22,6 @@ t_DIVIDE  = r'/'
 t_LPAREN  = r'\('
 t_RPAREN  = r'\)'
 t_EXPONENT = r'\^'
-t_MOD = r'mod'
 # Regular expression rule for EQUALS
 t_EQUALS = r'='
 
@@ -32,10 +29,7 @@ def t_IDENTIFIER(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
     return t
 
-# Identifying the sqrt function
-def t_SQRT(t):
-    r'sqrt'
-    return t
+
 
 
 

@@ -15,8 +15,6 @@ precedence = (
     ('left', 'TIMES', 'DIVIDE'),
     ('nonassoc', 'UMINUS'),  # Unary minus operator
     ('left', 'EXPONENT'),
-    ('right', 'SQRT'),
-    ('left', 'MOD'),
 )
 
 start = 'statement'
@@ -76,14 +74,7 @@ def p_expression_exponent(p):
     p[0] = p[1] ** p[3]
 
 
-def p_expression_mod(p):
-    'expression : expression MOD expression'
-    p[0] = p[1] % p[3]
 
-
-def p_expression_sqrt(p):
-    'expression : SQRT LPAREN expression RPAREN'
-    p[0] = math.sqrt(p[3])
 
 
 # Error rule for syntax errors
